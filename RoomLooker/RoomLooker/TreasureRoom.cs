@@ -36,7 +36,7 @@ namespace RoomLooker
         public override void Interact(Player player)
         {
             enemyEncounter = enemyEncounters.Next(1, 2);
-            if (enemyEncounter == 1)
+            if (enemyEncounter == 4)
             {
                 Zombie zombie = new Zombie();
 
@@ -101,7 +101,7 @@ namespace RoomLooker
                         }
                     }
 
-                    if (player.boots == false && player.rust == false && player.shiny == false && player.shoes == false)
+                    if (player.rusty_Boots == false && player.rusty_Chestpiece == false && player.shiny_Chestpiece == false && player.shiny_Boots == false)
                     {
                         zombie.Attack(player);
                         // player.hp -= Enemy.dmg;
@@ -113,6 +113,86 @@ namespace RoomLooker
                 if (zombie.hp <= 0)
                 {
                     Console.WriteLine("You defeted the zombie!");
+                }
+            }
+            if (enemyEncounter == 1)
+            {
+                Salamanderman salamanderman = new Salamanderman();
+
+                Console.WriteLine("Oh no, a... wait, what the fuck, its a salamander... man? Ummm, it might be endangered but hit it I guess?");
+                Console.WriteLine("Sala. Salamander!!!");
+                while (salamanderman.hp > 0 || player.attack == "")
+                {
+                    Random dmgDealtlight = new Random();
+                    Random dmgDealtheavy = new Random();
+                    int dmgLight = dmgDealtlight.Next(15, 21);
+                    int dmgHeavy = dmgDealtheavy.Next(20, 26);
+                    Console.WriteLine("Will you use a heavy or light attack?");
+
+                    player.attack = Console.ReadLine().Trim().ToLower();
+
+                    if (player.attack != "light" && player.attack != "heavy")
+                    {
+                        Console.WriteLine("That's not an attack dumbass, hit it or die!");
+                        player.attack = "";
+                    }
+
+                    if (player.attack == "light" && player.sword == false)
+                    {
+                        dmgLight -= salamanderman.armour;
+                        Console.WriteLine("You performed a light attack and dealt " + dmgLight + " damage");
+                        salamanderman.hp -= dmgLight;
+                    }
+
+                    if (player.attack == "light" && player.sword == true)
+                    {
+                        Console.WriteLine("You performed a light attack and dealt " + dmgLight + " damage");
+                        salamanderman.hp -= dmgLight;
+                    }
+
+                    if (player.attack == "heavy" && player.sword == false)
+                    {
+                        int miss = missChance.Next(1, 5);
+                        if (miss == 1)
+                        {
+                            Console.WriteLine("You missed!");
+                        }
+
+                        if (miss >= 2)
+                        {
+                            dmgHeavy -= salamanderman.armour;
+                            Console.WriteLine("You performed a heavy attack and dealt " + dmgHeavy + " damage to the zombie");
+                            salamanderman.hp -= dmgHeavy;
+                        }
+                    }
+
+                    if (player.attack == "heavy" && player.sword == true)
+                    {
+                        int miss = missChance.Next(1, 5);
+                        if (miss == 1)
+                        {
+                            Console.WriteLine("You missed!");
+                        }
+
+                        if (miss >= 2)
+                        {
+                            Console.WriteLine("You performed a heavy attack and dealt " + dmgHeavy + " damage to the zombie");
+                            salamanderman.hp -= dmgHeavy;
+                        }
+                    }
+
+                    if (player.rusty_Boots == false && player.rusty_Chestpiece == false && player.shiny_Chestpiece == false && player.shiny_Boots == false)
+                    {
+                        salamanderman.Attack(player);
+                        // player.hp -= Enemy.dmg;
+                        Console.WriteLine("The fucker hit you!");
+                        Console.WriteLine("You have " + player.hp + " health left.");
+                    }
+
+                }
+                if (salamanderman.hp <= 0)
+                {
+                    Console.WriteLine("You defeted the... Salamanderman... mon?");
                 }
             }
 
@@ -202,7 +282,7 @@ namespace RoomLooker
       <__>,>._::_.<,<__>
       
       ");
-                            player.rust = true;
+                            player.rusty_Chestpiece = true;
                             Console.WriteLine("You now have more armour.");
                             player.armour++;
                         }
@@ -240,7 +320,7 @@ namespace RoomLooker
       <__>,>._::_.<,<__>
       
       ");
-                            player.shiny = true;
+                            player.shiny_Chestpiece = true;
                             Console.WriteLine("You now have more armour.");
                             player.armour++;
                         }
@@ -257,7 +337,7 @@ namespace RoomLooker
        \__|
        
        ");
-                            player.shoes = true;
+                            player.rusty_Boots = true;
                             Console.WriteLine("You now have more armour.");
                             player.armour++;
                         }
@@ -274,7 +354,7 @@ namespace RoomLooker
        (_ |`._)``.
         `=(_      `._
            `=='`-----'   ");
-                            player.boots = true;
+                            player.shiny_Boots = true;
                             Console.WriteLine("You now have more armour.");
                             player.armour++;
                         }
@@ -364,7 +444,7 @@ namespace RoomLooker
       <__>,>._::_.<,<__>
       
       ");
-                            player.rust = true;
+                            player.rusty_Chestpiece = true;
                             Console.WriteLine("You now have more armour.");
                             player.armour++;
                         }
@@ -402,7 +482,7 @@ namespace RoomLooker
       <__>,>._::_.<,<__>
       
       ");
-                            player.shiny = true;
+                            player.shiny_Chestpiece = true;
                             Console.WriteLine("You now have more armour.");
                             player.armour++;
                         }
@@ -419,7 +499,7 @@ namespace RoomLooker
        \__|
        
        ");
-                            player.shoes = true;
+                            player.rusty_Boots = true;
                             Console.WriteLine("You now have more armour.");
                             player.armour++;
                         }
@@ -439,7 +519,7 @@ namespace RoomLooker
            `=='`-----' 
            
            ");
-                            player.boots = true;
+                            player.shiny_Boots = true;
                             Console.WriteLine("You now have more armour.");
                             player.armour++;
                         }

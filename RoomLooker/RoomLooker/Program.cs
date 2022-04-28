@@ -35,7 +35,7 @@ namespace RoomLooker
             int jackassStacker = 0;
             //int moronEnumerator = 0;
 
-            while (start != "exit" && player.Alive)
+            while (start != "exit" && player.Alive && player.Escaped == false)
             {
 
                 while (start == "")
@@ -122,6 +122,12 @@ namespace RoomLooker
                     Console.WriteLine("Bye bye biatch.");
 
                     Console.ReadLine();
+                }
+
+                if (player.Escaped == true)
+                {
+                    Console.WriteLine("You escaped the dungeon, yes, you beat a dungeon crawler rougelike, I know, boring, but to be fair there's only one option to get to this ending. Sooooo, consider yourself lucky I guess?");
+                    Console.WriteLine("Anyways, goodbye.");
                 }
             }
         }
