@@ -67,7 +67,7 @@ namespace RoomLooker
                             Console.WriteLine("Or do you want to check your inventory?");
                             Console.WriteLine("*Then type inv*");
 
-                            player.Direction = Console.ReadLine().Trim().ToLower();
+                            player.Direction = Console.ReadLine().Trim().ToLower(); 
 
                             if (player.Direction != "left" && player.Direction != "right" && player.Direction != "inv" && jackassStacker <= 2)
                             {

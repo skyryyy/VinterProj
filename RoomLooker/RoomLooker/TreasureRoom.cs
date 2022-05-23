@@ -41,8 +41,12 @@ namespace RoomLooker
                 Zombie zombie = new Zombie();
 
                 Console.WriteLine("Oh no, a god damned zombie appeared, what will you do?");
-                while (zombie.hp > 0 || player.attack == "")
+                while (zombie.hp > 0 || player.attack == "" || player.hp >= 0)
                 {
+                    if (player.hp <= 0)
+                    {
+                        player.Alive = false;
+                    }
                     Random dmgDealtlight = new Random();
                     Random dmgDealtheavy = new Random();
                     int dmgLight = dmgDealtlight.Next(15, 21);
@@ -96,7 +100,7 @@ namespace RoomLooker
 
                         if (miss >= 2)
                         {
-                            Console.WriteLine("You performed a heavy attack and dealt " + dmgHeavy + " damage to the zombie");
+                            Console.WriteLine("You performed a heavy attack and dealt " + dmgHeavy + " damage");
                             zombie.hp -= dmgHeavy;
                         }
                     }
@@ -121,8 +125,10 @@ namespace RoomLooker
 
                 Console.WriteLine("Oh no, a... wait, what the fuck, its a salamander... man? Ummm, it might be endangered but hit it I guess?");
                 Console.WriteLine("Sala. Salamander!!!");
-                while (salamanderman.hp > 0 || player.attack == "")
+                Console.WriteLine("What in all that's holy...");
+                while (salamanderman.hp >= 0 || player.attack == "" || player.hp >= 0)
                 {
+
                     Random dmgDealtlight = new Random();
                     Random dmgDealtheavy = new Random();
                     int dmgLight = dmgDealtlight.Next(15, 21);
@@ -161,7 +167,7 @@ namespace RoomLooker
                         if (miss >= 2)
                         {
                             dmgHeavy -= salamanderman.armour;
-                            Console.WriteLine("You performed a heavy attack and dealt " + dmgHeavy + " damage to the zombie");
+                            Console.WriteLine("You performed a heavy attack and dealt " + dmgHeavy + " damage");
                             salamanderman.hp -= dmgHeavy;
                         }
                     }
@@ -193,6 +199,11 @@ namespace RoomLooker
                 if (salamanderman.hp <= 0)
                 {
                     Console.WriteLine("You defeted the... Salamanderman... mon?");
+                }
+
+                if (player.hp <= 0)
+                {
+                    player.Alive = false;
                 }
             }
 

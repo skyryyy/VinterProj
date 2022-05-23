@@ -6,7 +6,7 @@ namespace RoomLooker
     {
         public Salamanderman()
         {
-            hp = 110;
+            hp = 90;
 
             dmg = 15;
 
